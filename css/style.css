@@ -1,0 +1,61 @@
+/* LOG IN PART */
+.loginBody {
+    background-image:url("../img/shelter.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.form-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: auto;
+    margin-top: 230px;
+}
+
+.loginPasswordAlert {
+    color: red;
+    font-size: small;
+}
+
+.loginCheckError {
+    margin: 0;
+    padding: 0;
+}
+
+
+/*Bookshelter part (Profile Part)*/
+
+
+.siteHeader__topHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+
+}
+
+.siteHeader__resultBooksWrapper {
+    display: flex;
+    align-items: center;
+    justify-content:space-between;
+}
+
+.siteHeader__resultBooks {
+    margin: 0;
+    padding: 0;
+    font-weight: bold;
+}
+.siteHeader__orderButton {
+    display: flex;
+    align-items: center;
+}
+.inputWrapper {
+    width: 670px;
+}
+
+.searchInput {
+    border: none;
+    background-color:aliceblue;
+}
