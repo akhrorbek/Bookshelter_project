@@ -114,18 +114,24 @@ body {
 
 .buttonWrapper {
     display: flex;
-    justify-content: space-between;
+    justify-content:space-between;
     align-items: center;
 }
 .bookmarkBtn {
+    margin-right: 12px;
     font-size: small;
     font-weight: 700;
 }
 
 .moreInfoLink {
+    margin-left: 12px;
     font-size: small;
     font-weight: 700;
     color:rgb(82, 82, 230);
+}
+
+.readLink {
+    font-size: small;
 }
 
 

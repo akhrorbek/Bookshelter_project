@@ -22,7 +22,7 @@ elLogOutBtn.addEventListener ("click", function (){
 let search = "python";
 let order = "relevance";
 let page = 0;
-let itemsNumber = 15;
+let itemsNumber = 9;
 ////RENDERBOOK FUNCTION
 const renderBooks = function (arr, elBookList){
     arr.forEach((items)=>{
@@ -53,7 +53,7 @@ const renderBooks = function (arr, elBookList){
         dataListItemYear.classList.add("booksYear");
         dataListItemButtonDiv.classList.add("buttonWrapper");
         dataListItemBookmarkButton.setAttribute("class", "bookmarkBtn btn btn-warning");
-        dataListItemInfoLink.setAttribute("class", "moreInfoLink btn btn-light mx-1");
+        dataListItemInfoLink.setAttribute("class", "moreInfoLink btn btn-light");
         dataListItemReadLink.setAttribute("class", "readLink btn btn-secondary mt-2 w-100");
 
         ////TEXT CONTENT
