@@ -3,7 +3,11 @@
 const elBookList = document.querySelector(".siteMain__bookList");
 const elBookSearchInput = document.querySelector(".searchInput");
 const elSearchResult = document.querySelector(".siteHeader__resultNumber");
-
+const elBookmarkList = document.querySelector(".bookMarkWrapper__bookmarkList")
+const elOrderBtn = document.querySelector(".siteHeader__orderButton");
+///MODAL
+const elModal = document.querySelector(".modal");
+const elOverlay = document.querySelector("overlay");
 ////LOGOUT BTN PART
 const elLogOutBtn = document.querySelector(".logoutBtn");
 const token = window.localStorage.getItem("token");
@@ -16,8 +20,9 @@ elLogOutBtn.addEventListener ("click", function (){
 });
 
 let search = "python";
-
-
+let order = "relevance";
+let page = 0;
+let itemsNumber = 15;
 ////RENDERBOOK FUNCTION
 const renderBooks = function (arr, elBookList){
     arr.forEach((items)=>{
@@ -32,7 +37,7 @@ const renderBooks = function (arr, elBookList){
         const dataListItemYear = document.createElement("p");
         const dataListItemButtonDiv = document.createElement("div");
         const dataListItemBookmarkButton = document.createElement("button");
-        const dataListItemInfoLink = document.createElement("a");
+        const dataListItemInfoLink = document.createElement("button");
         const dataListItemReadLink = document.createElement("a");
 
 
@@ -47,7 +52,7 @@ const renderBooks = function (arr, elBookList){
         dataListItemAuthors.classList.add("booksAuthor");
         dataListItemYear.classList.add("booksYear");
         dataListItemButtonDiv.classList.add("buttonWrapper");
-        dataListItemBookmarkButton.setAttribute("class", "bookmarkBtn btn btn-warning ");
+        dataListItemBookmarkButton.setAttribute("class", "bookmarkBtn btn btn-warning");
         dataListItemInfoLink.setAttribute("class", "moreInfoLink btn btn-light mx-1");
         dataListItemReadLink.setAttribute("class", "readLink btn btn-secondary mt-2 w-100");
 
@@ -61,6 +66,10 @@ const renderBooks = function (arr, elBookList){
         dataListItemReadLink.textContent = "Read";
 
 
+        ////DATASET
+
+        dataListItemBookmarkButton.dataset.bookmarkBtnId = items.id;
+
         ////APPENDCHILD
 
         elBookList.appendChild(dataListItem);
@@ -73,14 +82,12 @@ const renderBooks = function (arr, elBookList){
         dataListItemButtonDiv.appendChild(dataListItemBookmarkButton);
         dataListItemButtonDiv.appendChild(dataListItemInfoLink);
         dataListItem.appendChild(dataListItemReadLink);
-
     });
 };
 
 ////GETBOOKS FUNCTION
 const getBooks = async function () {
-    const request = await fetch(`https://www.googleapis.com/books/v1/volumes?q=${search}`);
-
+    const request = await fetch(`https://www.googleapis.com/books/v1/volumes?q=${search}&orderBy=${order}&startIndex=${page}&maxResults=${itemsNumber}`);
     elBookList.innerHTML=null;
 
 
@@ -97,5 +104,13 @@ getBooks();
 elBookSearchInput.addEventListener("change", function (){
     const searchInputValue = elBookSearchInput.value;
     search = searchInputValue;
+    getBooks();
+});
+
+
+////ORDER BOOKS
+elOrderBtn.addEventListener("click", function (){
+    const newOrderBooks = "newest";
+    order=newOrderBooks;
     getBooks();
 });

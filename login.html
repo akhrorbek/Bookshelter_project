@@ -13,9 +13,10 @@
 </head>
 
 <body>
-    <div class="container mt-3">
+    <div class="modal hidden"></div>
+    <div class="overlay hidden"></div>
 
-
+    <div class="container pt-3">
         <!--Site Header-->
         <header class="siteHeader">
             <div class="siteHeader__topHeader">
@@ -27,35 +28,30 @@
             </div>
             <div class="siteHeader__resultBooksWrapper mt-3 shadow-none p-2 mb-2 bg-light rounded">
                 <p class="siteHeader__resultBooks">Showing <span class="siteHeader__resultNumber"></span> Result(s)</p>
-                <button class="siteHeader__orderButton btn btn-secondary"><img class="siteHeader__orderIcon mx-1" src="./img/orderimg.svg" alt="order icon" width="20" height="20">Order by newest</button>
+                <button class="siteHeader__orderButton btn btn-secondary" id="btn"><img class="siteHeader__orderIcon mx-1" src="./img/orderimg.svg" alt="order icon" width="20" height="20">Order by newest</button>
             </div>
         </header>
 
 
         <!--Site Main-->
-        <main class="siteMain">
-            <div class="siteMain__leftPart">
+        <main class="siteMain d-flex mt-3">
+            <!---LEFT-PART-->
+            <div class="siteMain__leftPart container w-25">
                 <div class="leftPart__bookMarkWrapper">
                     <h5 class="bookMarkWrapper__bookmarkHeading">Bookmarks<span></span></h5>
                     <ul class="bookMarkWrapper__bookmarkList"></ul>
                 </div>
             </div>
-            <div class="siteMain__rightPart">
+            <!---RIGHT-PART-->
+            <div class="siteMain__rightPart container">
                 <div class="siteMain__rightPartBody">
-                    <ul class="siteMain__bookList d-flex flex-wrap justify-content-between p-0"></ul>
+                    <ul class="siteMain__bookList d-flex flex-wrap justify-content-between p-0 mt-3"></ul>
                 </div>
-
             </div>
         </main>
         <!--Site Footer-->
         <footer class="siteFooter"></footer>
     </div>
-
-
-
-
-
-
 
     <script src="./js/login.js"></script>
     <!-- JavaScript Bundle with Popper -->
