@@ -11,29 +11,19 @@ const token = window.localStorage.getItem("token");
 if(!token) {
     window.location.replace("index.html")
 };
-
 elLogOutBtn.addEventListener ("click", function (){
-
    window.location.replace("index.html");
 });
 
 let search = "python";
 
-const getBooks = async function () {
-    const request = await fetch(`https://www.googleapis.com/books/v1/volumes?q=${search}`);
 
-
-    elBookList.innerHTML=null;
-
-    const data = await request.json();
-
-    const dataItemInfo = data.items;
-
-    elSearchResult.textContent = data.totalItems;
-
-    dataItemInfo.forEach((items)=>{
+////RENDERBOOK FUNCTION
+const renderBooks = function (arr, elBookList){
+    arr.forEach((items)=>{
 
         ////CREATE ELEMENT
+
         const dataListItem = document.createElement("li");
         const dataListItemImage = document.createElement("img");
         const dataListItemDiv = document.createElement("div");
@@ -41,8 +31,8 @@ const getBooks = async function () {
         const dataListItemAuthors = document.createElement("p");
         const dataListItemYear = document.createElement("p");
         const dataListItemButtonDiv = document.createElement("div");
-        const dataListItemButton = document.createElement("button");
-        const dataListItemLink = document.createElement("a");
+        const dataListItemBookmarkButton = document.createElement("button");
+        const dataListItemInfoLink = document.createElement("a");
         const dataListItemReadLink = document.createElement("a");
 
 
@@ -57,18 +47,18 @@ const getBooks = async function () {
         dataListItemAuthors.classList.add("booksAuthor");
         dataListItemYear.classList.add("booksYear");
         dataListItemButtonDiv.classList.add("buttonWrapper");
-        dataListItemButton.setAttribute("class", "bookmarkBtn btn btn-warning ");
-        dataListItemLink.setAttribute("class", "moreInfoLink btn btn-light mx-1");
+        dataListItemBookmarkButton.setAttribute("class", "bookmarkBtn btn btn-warning ");
+        dataListItemInfoLink.setAttribute("class", "moreInfoLink btn btn-light mx-1");
         dataListItemReadLink.setAttribute("class", "readLink btn btn-secondary mt-2 w-100");
 
+        ////TEXT CONTENT
 
         dataListItemTitle.textContent = items.volumeInfo.title;
         dataListItemAuthors.textContent = items.volumeInfo.authors;
         dataListItemYear.textContent = items.volumeInfo.publishedDate;
-        dataListItemButton.textContent = "Bookmark";
-        dataListItemLink.textContent = "More Info";
+        dataListItemBookmarkButton.textContent = "Bookmark";
+        dataListItemInfoLink.textContent = "More Info";
         dataListItemReadLink.textContent = "Read";
-
 
 
         ////APPENDCHILD
@@ -80,18 +70,32 @@ const getBooks = async function () {
         dataListItemDiv.appendChild(dataListItemTitle);
         dataListItemDiv.appendChild(dataListItemAuthors);
         dataListItemDiv.appendChild(dataListItemYear);
-        dataListItemButtonDiv.appendChild(dataListItemButton);
-        dataListItemButtonDiv.appendChild(dataListItemLink);
+        dataListItemButtonDiv.appendChild(dataListItemBookmarkButton);
+        dataListItemButtonDiv.appendChild(dataListItemInfoLink);
         dataListItem.appendChild(dataListItemReadLink);
 
-    })
+    });
+};
+
+////GETBOOKS FUNCTION
+const getBooks = async function () {
+    const request = await fetch(`https://www.googleapis.com/books/v1/volumes?q=${search}`);
+
+    elBookList.innerHTML=null;
+
+
+    const data = await request.json();
+    if ((data.response ="True" && data.items.length > 0)){
+        renderBooks (data.items, elBookList);
+    };
+    elSearchResult.textContent = data.totalItems;
+
 };
 getBooks();
 
-
+////SEARCHING BOOKS FUNCTION
 elBookSearchInput.addEventListener("change", function (){
     const searchInputValue = elBookSearchInput.value;
-
     search = searchInputValue;
     getBooks();
-})
+});
