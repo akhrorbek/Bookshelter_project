@@ -9,12 +9,69 @@ body {
     background-size: cover;
 }
 
+::placeholder {
+    padding-left: 0px;
+    color: white;
+    font-weight:100;
+    opacity: 0.8;
+}
 .form-wrapper {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: auto;
-    margin-top: 230px;
+    justify-content: center;
+    height: 550px;
+    padding-top: 15px;
+}
+
+.userName {
+    background: none;
+    background-image: url("../img/user.svg");
+    background-repeat: no-repeat;
+    background-position: left center;
+    background-position-x: 28px;
+    text-align:center;
+    letter-spacing: 1.5px;
+    font-size: small;
+    border: 1px solid white;
+    width: 280px;
+    padding: 8px;
+    color: white;
+    border-radius: 5px;
+}
+.userPassword{
+    background: none;
+    background-image: url("../img/lock.svg");
+    background-repeat: no-repeat;
+    background-position:left center;
+    background-position-x: 28px;
+    text-align:center;
+    letter-spacing: 1.5px;
+    font-size: small;
+    border: 1px solid white;
+    width: 280px;
+    padding: 8px;
+    color: white;
+    border-radius: 5px;
+}
+
+.entranceBtn {
+    border: none;
+    width: 280px;
+    padding: 8px;
+    border-radius: 3px;
+    color: green;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.entranceBtn:hover {
+    color: black;
+    background-color: red;
+}
+.entranceBtn:active {
+    background-color: yellowgreen;
+    color: blue;
 }
 
 .loginPasswordAlert {
@@ -25,6 +82,21 @@ body {
 .loginCheckError {
     margin: 0;
     padding: 0;
+}
+
+.forgotPassword {
+    font-weight: 100;
+    font-size: medium;
+    color: white;
+}
+.passwordText {
+    font-size: medium;
+    text-decoration: none;
+    color: red;
+}
+
+.passwordText:hover {
+    color: aliceblue;
 }
 
 

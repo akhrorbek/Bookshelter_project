@@ -1,6 +1,7 @@
 "use strict"
 
 const elForm = document.querySelector(".form");
+const elForgotPassword= document.querySelector(".forgotPassword");
 const elInputUser = document.querySelector(".userName");
 const elInputPassword = document.querySelector(".userPassword");
 const elLoginPasswordCheck = document.querySelector(".loginPasswordAlert");
@@ -42,3 +43,14 @@ elForm.addEventListener("submit", function (evt){
 
     });
 } );
+
+
+
+elForgotPassword.addEventListener("click", function(evt){
+    evt.preventDefault();
+    elForgotPassword.innerHTML = null;
+    const forgotPasswords = document.createElement("p")
+    forgotPasswords.textContent="Login: eve.holt@reqres.in  Password: 19940101" ;
+    elForgotPassword.appendChild(forgotPasswords);
+
+})
